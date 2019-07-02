@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %} {% block title %}Equipos Controller{% endblock %} {% block body %}
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Sexo</th>
+            <th scope="col">Jugadores</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        {% for equipo in equipos %}
+        <tr>
+            <th scope="row">{{equipo.id}}</th>
+            <td>{{equipo.categoria}}</td>
+            <td>{{equipo.sexo}}</td>
+            <td>{{equipo.numJugadores}}</td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+{% endblock %}
