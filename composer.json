@@ -13,13 +13,13 @@
         "symfony/web-server-bundle": "4.3.*",
         "symfony/yaml": "4.3.*"
     },
-    "require-dev": {
-    },
+    "require-dev": {},
     "config": {
         "preferred-install": {
             "*": "dist"
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "process-timeout": 0
     },
     "autoload": {
         "psr-4": {
@@ -40,7 +40,7 @@
         "symfony/polyfill-php56": "*"
     },
     "scripts": {
-        "start": "php -S localhost:8000 -t public",
+        "start": "php bin/console server:run",
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
