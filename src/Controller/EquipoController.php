@@ -60,22 +60,39 @@ class EquipoController extends AbstractController
     }
 
     /**
-     * @Route("/newTemp", name="newTempEquipos")
+     * @Route("/update", name="updateEquipos")
      */
-    // public function nuevoEquipoTemp()
-    // {
-    //     //instanciamos un objeto equipo
-    //     $equipo = new Equipo();
+    public function actualizaEquipo(Request $request, $id = null)
+    {
+        //recuperamos el entiti manager
+        $em = $this->getDoctrine()->getManager();
 
-    //     $form = $this->createFormBuilder($equipo)
-    //         ->add('categoria')
-    //         ->add('sexo')
-    //         ->add('numJugadores')
-    //         ->add('guardar', SubmitType::class, ['label' => 'Crear'])
-    //         ->getForm();
+        //obtenemos la referencia al repositorio
+        $repository = $em->getRepository(Equipo::class);
 
-    //     return $this->render('equipo/newTemp.html.twig', [
-    //         'form' => $form->createView(),
-    //     ]);
-    // }
+        //buscamos un equipo a partir del id
+        $equipo = $repository->find($id);
+
+        //creamos el form a partir de la entidad y la clase EquipoType de Forms
+        $form = $this->createForm(EquipoType::class, $equipo);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $equipo = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($equipo);
+            $em->flush();
+
+            return $this->redirectToRoute('listaEquipos');
+        }
+
+        return $this->render('equipo/new.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+
 }
