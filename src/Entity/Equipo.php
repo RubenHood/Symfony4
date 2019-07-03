@@ -151,4 +151,10 @@ class Equipo
 
         return $this;
     }
+
+    //metodo que pinta 
+    public function __toString()
+    {
+        return $this->categoria;
+    }
 }

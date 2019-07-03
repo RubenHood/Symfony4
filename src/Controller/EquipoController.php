@@ -7,7 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
 use App\Entity\Equipo;
-use App\Forms\EquipoType;
+use App\Form\EquipoType;
 
 /**
  * @Route("/equipo")
