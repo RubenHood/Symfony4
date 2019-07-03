@@ -32,6 +32,7 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+    private $plainPassword;
 
     public function getId(): ?int
     {
@@ -88,7 +89,22 @@ class User implements UserInterface
         return (string) $this->password;
     }
 
-    public function setPassword(string $password): self
+    public function setPassword(string $plainPassword): self
+    {
+        $this->plainPassword = $plainPassword;
+
+        return $this;
+    }
+
+     /**
+     * @see UserInterface
+     */
+    public function getPlainPassword(): string
+    {
+        return (string) $this->plainPassword;
+    }
+
+    public function setPlainPassword(string $password): self
     {
         $this->password = $password;
 
